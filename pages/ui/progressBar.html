@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Progressbar - Default functionality</title>
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <script src="../../scripts/jquery-2.1.3.min.js"></script>
+    <script src="../../scripts/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../css/uidemo.css">
+    <style>
+
+        #progressbar .ui-progressbar-value {
+            background-color: #ccc;
+        }
+
+        .ui-progressbar {
+            position: relative;
+        }
+        .progress-label {
+            position: absolute;
+            left: 50%;
+            top: 4px;
+            font-weight: bold;
+            text-shadow: 1px 1px 0 #fff;
+        }
+    </style>
+
+    <script>
+        $(function() {
+            $( "#progressbardemo" ).progressbar({
+                value: 37
+            });
+
+            var progressbar = $( "#progressbarlabel" ),
+                    progressLabel = $( ".progress-label" );
+
+            progressbar.progressbar({
+                value: false,
+                change: function() {
+                    progressLabel.text( progressbar.progressbar( "value" ) + "%" );
+                },
+                complete: function() {
+                    progressLabel.text( "Complete!" );
+                }
+            });
+
+            function progress() {
+                var val = progressbar.progressbar( "value" ) || 0;
+
+                progressbar.progressbar( "value", val + 2 );
+
+                if ( val < 99 ) {
+                    setTimeout( progress, 80 );
+                }
+            }
+
+            setTimeout( progress, 2000 );
+
+            $( "#progressbar" ).progressbar({
+                value: false
+            });
+            $( "button" ).on( "click", function( event ) {
+                var target = $( event.target ),
+                        progressbar = $( "#progressbar" ),
+                        progressbarValue = progressbar.find( ".ui-progressbar-value" );
+
+                if ( target.is( "#numButton" ) ) {
+                    progressbar.progressbar( "option", {
+                        value: Math.floor( Math.random() * 100 )
+                    });
+                } else if ( target.is( "#colorButton" ) ) {
+                    progressbarValue.css({
+                        "background": '#' + Math.floor( Math.random() * 16777215 ).toString( 16 )
+                    });
+                } else if ( target.is( "#falseButton" ) ) {
+                    progressbar.progressbar( "option", "value", false );
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="progressbardemo"></div>
+<div id="progressbarlabel"><div class="progress-label">Loading...</div></div>
+<div id="progressbar"></div>
+<button id="numButton">Random Value - Determinate</button>
+<button id="falseButton">Indeterminate</button>
+<button id="colorButton">Random Color</button>
+
+
+</body>
+</html>

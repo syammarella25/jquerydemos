@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+
+     <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />  
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+
+            $("#lnkCollapse").click(function (event) {
+                event.preventDefault();
+                $("#contentArea").slideToggle("slow");
+            });
+
+            $("#lnkClose").click(function (event) {
+                event.preventDefault();
+                $("#contentArea").slideUp(200);
+            });
+
+
+        });
+
+    </script>
+
+</head>
+<body>
+<div class="pageTitle">
+       Sliding Effect</div>
+  
+    <p>
+        JQuery provides three method to show or hide elements in sliding behavior.
+        <ol>
+            <li><b>SlideDown(speed, callback):</b> This method gradually increase the height of the
+                elements, from hidden to visible.</li>
+            <li><b>SlideUp(speed, callback):</b> This method gradually decrease the height of the
+                elements, from visible to hidden.</li>
+            <li><b>SlideToggle(speed, callback):</b> This method toggle between SildeUp() and SlideDown()
+                for selected elements.</li>
+        </ol>
+        All three methods has "Speed" and "callback" parameters.
+        <br />
+        Speed parameter can have following values
+        <ul>
+            <li>slow</li>
+            <li>normal</li>
+            <li>fast</li>
+            <li>milliseconds. e.g. 100, 500, 1000 etc.</li>
+        </ul>
+        The callback parameter is the name of a function that executes after the function
+        completes.
+    </p>
+    <h3>
+        Example</h3>
+    <div class="box" style="width: 400px">
+        <div class="title">
+            Collapse Box (<a id="lnkCollapse" href="#" style="color: White; font-size: 12px;
+                text-decoration: none;">Click Here</a>)
+        </div>
+        <div id="contentArea" class="content">
+            <div align="right">
+                <a id="lnkClose" href="#" style="font-size: 10px;">Close</a></div>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+            eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren
+        </div>
+    </div>
+    <p>
+        According to your website design, decide collapsible Area and element on which you
+        will handle Slide behavior. In this example I created Box using DIVs and choose
+        DIV having id “contentArea” for sliding.
+    </p>
+    <pre>
+
+&lt;div class="box" style="width: 400px">
+    &lt;div class="title">
+        Collapse Box (&lt;a id="<b>lnkCollapse</b>" href="#" style="color: White; font-size: 12px;
+            text-decoration: none;">Click Here&lt;/a>)
+    &lt;/div>
+    &lt;div id="<b>contentArea</b>" class="content">
+        &lt;div align="right">&lt;a id="<b>lnkClose</b>" href="#" style="font-size: 10px;">Close&lt;/a>&lt;/div>
+           
+        Your text will be here
+
+    &lt;/div>
+&lt;/div>
+
+</pre>
+    <p>
+        Register click event of the html element and call SlideToggle and SlidUp method
+        for the “contentArea”.
+    </p>
+    <pre>
+
+$(document).ready(function () {
+
+    $("#lnkCollapse").click(function () {
+        $("#contentArea").slideToggle("slow");
+    });
+
+    $("#lnkClose").click(function () {
+        $("#contentArea").slideUp(200);
+    });
+});
+</pre>
+</body>
+</html>

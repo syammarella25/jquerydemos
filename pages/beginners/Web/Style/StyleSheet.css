@@ -1,0 +1,87 @@
+﻿body
+{
+	margin: 0;
+	padding: 6px;
+}
+
+h3
+{
+	color: #ae5400;
+	font-size:26px;
+}
+
+h4
+{
+	color: #104e57;
+	font-size:22px;
+}
+
+
+pre
+{
+	background-color:#e7e4da;
+	padding:5px;
+}
+
+pre b
+{
+	color:Red;
+}
+
+.pageTitle
+{
+	color:#0a7282;
+	font-size:30px;
+	font-weight:bold;
+	padding:4px;
+}
+
+
+.box
+{
+	border: 1px solid gray;
+}
+
+
+.box .title
+{
+	background-image: url(../Images/footer_bar_bg.png);
+	background-repeat: repeat-x;
+	color: White;
+	padding: 4px;
+	border-bottom: 1px solid gray;
+	font-weight: bold;
+}
+
+.box .content
+{
+	padding: 3px;
+}
+
+
+.boxTable
+{
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+
+.boxTable td
+{
+	border: 1px solid gray;
+	border-collapse: collapse;
+}
+
+.boxTable th
+{
+	background-image: url(../Images/footer_bar_bg.png);
+	background-repeat: repeat-x;
+	color: White;
+	padding: 4px;
+	border-bottom: 1px solid gray;
+	font-weight: bold;
+	border-collapse: collapse;
+}
+
+
+

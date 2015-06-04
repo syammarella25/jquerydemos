@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Fade effect</title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        .confirm_save
+        {
+            position: absolute;
+            left: 250px;
+            margin-top: -75px;
+            color: #FFF;
+            font-size: 1.4em;
+            font-weight: bold;
+            padding: 15px 40px;
+            background: gray;
+            border: 5px solid black;
+            display: none;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#fadeExp1 img").fadeTo(0, 0.3);
+
+            $("#fadeExp1 img").hover(function () {
+                $(this).fadeTo("slow", 1.0);
+            },
+                                     function () {
+                                         $(this).fadeTo("slow", 0.3);
+                                     });
+
+
+
+            $("#lnkFadeIn").click(function (event) {
+                event.preventDefault();
+                $("#imgFade").fadeIn(1000);
+            });
+
+            $("#lnkFadeOut").click(function (event) {
+                event.preventDefault();
+                $("#imgFade").fadeOut(1000);
+            });
+
+            $("#lnkFadeToggle").click(function (event) {
+                event.preventDefault();
+                $("#imgFade").fadeToggle(2000);
+            });
+
+
+
+            $("#btnShow").click(function () {
+
+                $('.confirm_save').fadeIn(100).delay(1000).fadeOut(700);
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+    <div class="pageTitle">
+        Fading Effect</div>
+    <p>
+        JQuery also provides four methods to gradually change the opacity of the selected
+        element using Fade effect.
+        <ol>
+            <li><b>fadeTo(speed, opacity, callback):</b> This method change the opacity of selected
+                elements to specified opacity.</li>
+            <li><b>fadeIn(speed, callback):</b> This method gradually increase the opacity of the
+                elements, from hidden to visible.</li>
+            <li><b>fadeOut(speed, callback):</b> This method gradually decrease the opacity of the
+                elements, from visible to hidden.</li>
+            <li><b>fadeToggle(speed, callback):</b> This method toggle between FadeIn() and FadeOut()
+                for selected elements.</li>
+        </ol>
+    </p>
+    <h3>
+        Example (fadeTo)</h3>
+    <div id="fadeExp1">
+        <img src="Images/b1.jpg" width="100px" height="100px" style="margin-left: 20px" />
+        <img src="Images/b2.jpg" width="100px" height="100px" style="margin-left: 20px" />
+        <img src="Images/b3.jpg" width="100px" height="100px" style="margin-left: 20px" />
+    </div>
+    <p>
+        In this example, I will set the opacity of the image on hover. Add images in to
+        the DIV and assign id “fadeExp1” to div.</p>
+    <pre>
+&lt;div id="fadeExp1">
+    &lt;img src="Images/b1.jpg" width="100px" height="100px" />
+    &lt;img src="Images/b2.jpg" width="100px" height="100px" />
+    &lt;img src="Images/b3.jpg" width="100px" height="100px" />
+&lt;/div>
+</pre>
+    <p>
+        In ready() function set the default opacity of all image using $(“#fadeExp1 img”).fadeTo(0,
+        0.3); statement. The register Hover event on each image and provide two functions
+        in it, one for mouse over and one for mouse our and set the opacity of element there.
+        See example code below
+    </p>
+    <pre>
+$(document).ready(function () {
+
+    $("#fadeExp1 img").fadeTo(0, 0.3);
+
+    $("#fadeExp1 img").hover(function () {
+        $(this).fadeTo("slow", 1.0);
+        },
+        function () {$(this).fadeTo("slow", 0.3);
+        }
+    );
+});
+</pre>
+    <h3>
+        Example (fadeIn - fadeOut - fadeToggle)</h3>
+    <div style="height: 150px;">
+        <div style="float: left; padding-right: 6px;">
+            <a href="#" id="lnkFadeOut">Fade out</a><br />
+            <br />
+            <a id="lnkFadeIn" href="#">Fade in</a>
+            <br />
+            <br />
+            <a href="#" id="lnkFadeToggle">Fade toggle</a>
+        </div>
+        <div>
+            <img id="imgFade" src="Images/b1.jpg" width="100px" height="100px" />
+        </div>
+        <div style="clear: both;">
+        </div>
+    </div>
+    <p>
+        Assign ids to all three &lt;a> links and &lt;img> elements. Register the click event
+        on the anchors
+    </p>
+    <pre>
+
+&lt;a id="<b>lnkFadeIn</b>"  href="#">Fade in&lt;/a> | 
+&lt;a id="<b>lnkFadeOut</b>" href="#">Fade out&lt;/a> | 
+&lt;a id="<b>lnkFadeToggle</b>" href="#">Fade toggle&lt;/a>&lt;br />
+
+&lt;img id="<b>imgFade</b>" src="Images/b1.jpg" width="100px" height="100px" />
+
+</pre>
+    <p>
+        On click simple call fading methods on image element. You will also notice event.preventDefault();
+        method in the example. This method prevents or stops the default behavior of the
+        element.
+    </p>
+    <pre>
+
+$(document).ready(function () {
+
+    $("#lnkFadeIn").click(function (event) {
+        event.preventDefault();
+        $("#imgFade").fadeIn(1000);
+    });
+
+    $("#lnkFadeOut").click(function (event) {
+        event.preventDefault();
+        $("#imgFade").fadeOut(1000);
+    });
+
+    $("#lnkFadeToggle").click(function (event) {
+        event.preventDefault();
+        $("#imgFade").fadeToggle(2000);
+    });
+});
+</pre>
+    <h3>
+        Example
+    </h3>
+    <div>
+        <div>
+            <input id="btnShow" type="button" value="Click here to show message" />
+            <br />
+            <br />
+            <div>
+                <div class="confirm_save">
+                    Congratualtion! You have won.</div>
+            </div>
+        </div>
+    </div>
+    <p>
+        When user clicks on the button, it shows a message for few seconds and after that
+        message disappears. You can achieve this functionality in one line of code.
+    </p>
+    <pre>
+
+$(document).ready(function () {
+
+    $("#btnShow").click(function () {
+          $('.confirm_save').fadeIn(100).delay(1000).fadeOut(700);
+    });   
+
+});   
+</pre>
+    <p>
+        Have you noticed the delay() method between the fadeIn() and fadeout() method. The
+        Delay() method allows us to delay the execution of functions that follow it in the
+        queue.
+    </p>
+</body>
+</html>

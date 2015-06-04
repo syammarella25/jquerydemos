@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        #tabArea
+        {
+            border: 1px dotted gray;
+            background: #cac2aa;
+        }
+        
+        #tabHeader
+        {
+            margin: 5px;
+            background: #cac2aa;
+            height: 40px;
+        }
+        
+        #tabData
+        {
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid gray;
+        }
+        
+        .tab
+        {
+            background: gray;
+            background-image: url(Images/footer_bar_bg.png);
+            background-repeat: repeat-x;
+            color: White;
+            margin: 5px;
+            padding: 5px;
+            border: 1px solid gray;
+            display: block;
+            float: left;
+            width: 100px;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .tab:hover
+        {
+            border: 1px solid black;
+            background: #948b6d;
+            display: block;
+            float: left;
+            width: 100px;
+            text-align: center;
+        }
+        
+        .selectTabHeader
+        {
+            background: #948b6d;
+            border: 1px solid #554d3c;
+            color: black;
+            font-weight: bold;
+        }
+        
+        #tab-data
+        {
+            display: none;
+        }
+        
+        #tab-data.selectedTab
+        {
+            display: block;
+            color: black;
+            background: white;
+            height: 400px;
+            padding: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+
+            $('#tabHeader a').click(function () {
+
+                // Set header
+                $('.selectTabHeader').removeClass('selectTabHeader');
+                $(this).addClass('selectTabHeader');
+
+                // Show Actual area
+                var v = this.id;
+
+                $('.selectedTab').removeClass('selectedTab');
+
+                $('.' + v).addClass('selectedTab');
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div class="pageTitle">
+        Create Tab using JQuery</div>
+    <div id="tabArea">
+        <div id="tabHeader">
+            <a class="tab selectTabHeader" id="tab1">Tab 1 </a><a class="tab" id="tab2">Tab 2
+            </a><a class="tab" id="tab3">Tab 3 </a>
+        </div>
+        <div id="tabData">
+            <div id="tab-data" class="tab1 selectedTab">
+                <div>
+                    <img src="Images/tab1.jpg" height="100px" width="100%" />
+                    <h3>
+                        Tab 1</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                        eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren
+                    </p>
+                </div>
+            </div>
+            <div id="tab-data" class="tab2">
+                <div>
+                    <img src="Images/tab2.jpg" height="100px" width="100%" />
+                    <h3>
+                        Tab 2</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                        eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren
+                    </p>
+                </div>
+            </div>
+            <div id="tab-data" class="tab3">
+                <div>
+                    <img src="Images/tab3.jpg" height="100px" width="100%" />
+                    <h3>
+                        Tab 3</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+                        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+                        eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        You can easily create sophisticated tab control using JQuery. Let start learning
+        how can we quickly create tab control. Create Tab Header or tabs by assigning IDs
+        to each element as I assigned “tab1”, “tab2” and “tab3”. Set first element as selected
+        by assigning css class “selectTabHeader”.
+    </p>
+    <p>
+        Now create Tab content area. I created separate divs for each tab content. Assign
+        same id “tab-data” to content div. as I assigned in given example and also assign
+        dummy CSS class to div having same id as parent tab button contains. I assign css
+        class “tab1”, “tab2” and “tab3”
+    </p>
+    <pre>
+    
+&lt;div id="tabArea">
+    &lt;div id="tabHeader">
+        &lt;a id="<b>tab1</b>" class="tab selectTabHeader">Tab 1 &lt;/a>
+        &lt;a id="<b>tab2</b>" class="tab">Tab 2&lt;/a>
+        &lt;a id="<b>tab3</b>" class="tab">Tab 3 &lt;/a>
+    &lt;/div>
+    &lt;div id="tabData">
+        &lt;div id="<b>tab-data</b>" class="tab1 selectedTab">
+            tab 1 data
+        &lt;/div>
+        &lt;div id="<b>tab-data</b>" class="tab2">
+                tab 2 data
+        &lt;/div>
+        &lt;div id="<b>tab-data</b>" class="tab3">
+            tab 3 data
+        &lt;/div>
+    &lt;/div>
+&lt;/div>    
+    
+    </pre>
+    <p>
+        By default Hide all tab content area using css and display only selected tab contents.
+    </p>
+    <pre>
+
+#tab-data
+{
+    display: none;
+}
+        
+#tab-data.selectedTab
+{
+    display: block;
+    color: black;
+    background: white;
+    height: 400px;
+    padding: 5px;
+}
+
+</pre>
+    <p>
+        Register click event of all header buttons. On the click of element remove “selectTabHeader”
+        CSS class from last selected element and then assign selected Css class to clicked
+        element by using command
+    </p>
+    <pre>
+        $('.selectTabHeader').removeClass('selectTabHeader');
+        $(this).addClass('selectTabHeader');
+</pre>
+    <p>
+        Use same technique for content area. Remove Css class “selectedTab” from last selected
+        tab and assign this class to content area of selected element.
+    </p>
+    <p>
+        Simple get the id of click element. Suppose user clicked on “tab2”. Remove the class
+        "selectedTab" of last selected content using command
+    </p>
+    <pre>
+var v = this.id;
+$('.selectedTab').removeClass('selectedTab');
+
+
+$('.' + v).addClass('selectedTab');
+</pre>
+    <p>
+        Now you have to show the content area of the selected element. Simply find html
+        element which have css class same as the id of selected element. Suppose “tab2",
+        assign "selectedTab" css class to that element.
+    </p>
+    <pre>
+    
+$(document).ready(function () {
+
+    $('#tabHeader a').click(function () {
+
+            // Set header
+            $('.selectTabHeader').removeClass('selectTabHeader');
+            $(this).addClass('selectTabHeader');
+
+            // Show Actual area
+            var v = this.id;
+
+            $('.selectedTab').removeClass('selectedTab');
+
+            $('.' + v).addClass('selectedTab');
+    });
+});
+    
+    </pre>
+</body>
+</html>

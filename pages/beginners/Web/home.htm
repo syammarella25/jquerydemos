@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        td
+        {
+            vertical-align: top;
+        }
+        
+        th
+        {
+            background: #e1e1e1;
+            text-align: left;
+        }
+        
+        div
+        {
+            margin: 5px;
+            padding: 5px;
+            cursor: pointer;
+            width: 150px;
+            text-align: center;
+            border: 1px dotted gray;
+        }
+        
+        .SelectDiv
+        {
+            border: 1px solid gray;
+            background: #e1e1e1;
+        }
+        
+        .textHighlight
+        {
+            color: Red;
+        }
+        
+        
+        .listUL
+        {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        
+        .emptyUL
+        {
+            width: 100px;
+            height: 100px;
+            background: gray;
+            border: 2px dotted black;
+        }
+        
+        .myCss
+        {
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+        var old = null;
+        $(document).ready(function () {
+
+            $('div').click(
+                            function () {
+
+
+                                $('.SelectDiv').removeClass('SelectDiv');
+                                $(this).addClass('SelectDiv');
+                            }
+                        );
+
+        });
+
+    </script>
+</head>
+<body>
+    <span class="pageTitle">JQuery </span>
+    <p>
+        JQuery is a javascript library, which has wide range of actions such as Event handling,
+        animation, html document traversing and Ajax interaction for web development. JQuery
+        simplifies javascript programming.
+    </p>
+    <h3>
+        $(document).ready Method
+    </h3>
+    <p>
+        The document ready event executes already when the HTML-Document is loaded and the
+        DOM is ready, even if all the graphics are not loaded yet
+    </p>
+    <pre>
+   $(document).ready(function() {
+	 alert("document is ready");
+   });
+    </pre>
+    <h3>
+        Simple JQuery Example</h3>
+    <p>
+        JQuery provides a simple way to select single element or group of elements. You
+        can access element by type (div, span, p), id, CSS class and attribute etc. In this
+        example, I am going to register the click event on the all DIVs and on the click
+        I will assign CSS class to selected div element.</p>
+    <p>
+        <div>
+            First Div
+        </div>
+        <div>
+            Second Div
+        </div>
+        <div>
+            Third Div
+        </div>
+    </p>
+    <pre>
+                    
+    $('div').click(
+        function () {
+            $('.SelectDiv').removeClass('SelectDiv');
+            $(this).addClass('SelectDiv');
+        }
+    );
+                    
+</pre>
+    <p>
+        $(‘div’) will selected all Div element in the page and $(‘div’).click(function(){….});
+        means the on the click of div the function inside the click() will call.
+    </p>
+    <p>
+        As I mentioned above that you can select elements by different ways using JQuery.
+        $('.SelectDiv') Statement will select html elements which has CSS class “SelectedDiv”.
+        removeClass('SelectDiv'); removes the Css class “SelectDiv” from all selected elements
+        and $(this).addClass('SelectDiv'); adds/assigns the Css class to current clicked
+        element.
+    </p>
+</body>
+</html>

@@ -1,0 +1,386 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        .advanceCarousel
+        {
+            width: 453px;
+            border: 1px solid black;
+        }
+        
+        .carouselWindow
+        {
+            height: 400px;
+            width: 449px;
+            margin: 2px;
+            overflow: hidden; /*--Hides anything outside of the set width/height--*/
+            position: relative;
+        }
+        .imageReel
+        {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        .imageReel .image
+        {
+            float: left;
+            border: 0px solid white;
+        }
+        
+        .imageReel .image img
+        {
+            border: 0px solid white;
+        }
+        
+        .description
+        {
+            padding: 4px;
+            background: #948b6d;
+            height: 60px;
+        }
+        
+        
+        .paggingBar
+        {
+            height: 35px;
+            z-index: 100; /*--Assures the paging stays on the top layer--*/
+            line-height: 35px;
+            text-decoration: none;
+            font-weight: bold; /*--Hidden by default, will be later shown with jQuery--*/
+        }
+        
+        .aNav
+        {
+            padding: 5px;
+            text-decoration: none;
+            color: #29a0b9;
+            font-weight: bold;
+            font-size: 10pt;
+            margin-top: 15px;
+            outline: none;
+        }
+        
+        .paging
+        {
+            text-align: center;
+        }
+        
+        
+        .paging a
+        {
+            padding: 5px;
+            text-decoration: none;
+            color: #29a0b9;
+            font-weight: bold;
+            font-size: 10pt;
+            outline: none;
+        }
+        
+        .paging a.active
+        {
+            font-weight: bold;
+            border: 1px solid #000000;
+        }
+        
+        .paging a:hover
+        {
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".paging a:first").addClass("active");
+
+            //Get size of images, number of images, Determine the size of the image reel.
+            var imageWidth = $(".carouselWindow").width();
+            var imageSum = $(".imageReel .image img").size();
+            var imageReelWidth = imageWidth * imageSum;
+
+            //Adjust the image reel to its new size
+            $(".imageReel").css({ 'width': imageReelWidth });
+
+            rotate = function () {
+                var triggerID = $active.attr("rel") - 1; //Get number of times to slide
+
+                var image_reelPosition = triggerID * imageWidth; //Determines the distance the image reel needs to slide
+
+                $(".paging a").removeClass('active'); //Remove all active class
+                $active.addClass('active');
+
+                //Slider Animation
+                $(".imageReel").animate({
+                    left: -image_reelPosition
+                }, 500);
+
+            };
+
+            startRotation(); //Run function on launch rotation
+
+            //On Click
+            $(".paging a").click(function () {
+                $active = $(this); //Activate the clicked paging
+
+                //Reset Timer
+                RotateImmediate();
+
+                return false; //Prevent browser jump to link anchor
+            });
+
+
+            // setInterval(function () { alert('called again') }, 9000);
+
+        });
+
+        function RotateImmediate() {
+
+            clearInterval(play); //Stop the rotation
+            rotate(); //Trigger rotation immediately
+            startRotation(); // Resume rotation
+
+
+        }
+
+        function RotateNext() {
+            var next = $('.paging a.active').next();
+            if (next.length > 0) {
+                $active = next;
+                RotateImmediate();
+            }
+        }
+
+        function RotatePrevious() {
+            var next = $('.paging a.active').prev();
+            if (next.length > 0) {
+                $active = next;
+                RotateImmediate();
+            }
+        }
+
+
+        function startRotation() {
+
+            play = setInterval(function () {
+
+                $active = $('.paging a.active').next();
+
+                if ($active.length == 0) {
+                    $active = $('.paging a:first'); //go back to first
+                }
+
+                rotate();  //Trigger the paging and slider function
+            }, 7000); //Timer speed in milliseconds 
+        }
+
+
+    
+    </script>
+</head>
+<body>
+    <div class="pageTitle">
+        Create Advance Carousel</div>
+    <div class="advanceCarousel">
+        <div class="carouselWindow">
+            <div class="imageReel">
+                <div class="image">
+                    <a href="#" target="_blank">
+                        <img src="images/b1.jpg" />
+                    </a>
+                    <div class="description">
+                        Here is a description of first image
+                    </div>
+                </div>
+                <div class="image">
+                    <a href="#" target="_blank">
+                        <img src="images/b2.jpg" />
+                    </a>
+                    <div class="description">
+                        Description of second image
+                    </div>
+                </div>
+                <div class="image">
+                    <a href="#" target="_blank">
+                        <img src="images/b3.jpg" />
+                    </a>
+                    <div class="description">
+                        I am going to write 3rd image.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paggingBar">
+            <div style="float: left;">
+                <a class="aNav" href="javascript:RotatePrevious();">&lt;&lt;</a>
+            </div>
+            <div style="float: right;">
+                <a class="aNav" href="javascript:RotateNext();">&gt;&gt;</a>
+            </div>
+            <div class="paging">
+                <a href="#" rel="1">1</a> <a href="#" rel="2">2</a> <a href="#" rel="3">3</a>
+            </div>
+        </div>
+    </div>
+    <p>
+        After reading previous chapters, now you have enough knowledge to create advance
+        UI controls. In this example I will explain you to create Carousel, which will change
+        the images in sliding style. User can also change image using navigation buttons
+        and also he can directly go to image using number options. Write the HTML as given
+        below.
+    </p>
+    <pre>
+
+&lt;div class="advanceCarousel">
+    &lt;div class="carouselWindow">
+        &lt;div class="imageReel">
+            &lt;div class="image">
+                &lt;a href="#" target="_blank" >
+                    &lt;img src="images/b1.jpg" />
+                &lt;/a>
+                &lt;div class="description">
+                    Here is a description of first image
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="image">
+                &lt;a href="#" target="_blank" >
+                    &lt;img src="images/b2.jpg" />
+                &lt;/a>
+                &lt;div class="description">
+                    Description of second image
+                &lt;/div>
+            &lt;/div>
+            &lt;div class="image">
+                &lt;a href="#" target="_blank" >
+                    &lt;img src="images/b3.jpg" />
+                &lt;/a>
+                &lt;div class="description">
+                    I am going to write 3rd image.
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
+    &lt;/div>
+    &lt;div class="paggingBar">
+        &lt;div style="float: left;">
+            &lt;a class="aNav" href="javascript:RotatePrevious();">&lt;&lt;&lt;/a>
+        &lt;/div>
+        &lt;div style="float: right;">
+            &lt;a class="aNav" href="javascript:RotateNext();">&gt;&gt;&lt;/a>
+        &lt;/div>
+        &lt;div class="paging">
+            &lt;a href="#" rel="1">1&lt;/a> &lt;a href="#" rel="2">2&lt;/a> &lt;a href="#" rel="3">3&lt;/a>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+
+</pre>
+    <p>
+        In ready function, assign active CSS class to first element. After that determine
+        the width of the total reel. Get the width of the window and then get the total
+        number of images. Multiply the Width by size, you will get the total width of the
+        reel. Then assign this width to the imageReel Css class.
+    </p>
+    <pre>
+
+$(".paging a:first").addClass("active");
+
+//Get size of images, number of images, Determine the size of the image reel.
+var imageWidth = $(".carouselWindow").width();
+var imageSum = $(".imageReel .image img").size();
+var imageReelWidth = imageWidth * imageSum;
+
+//Adjust the image reel to its new size
+$(".imageReel").css({ 'width': imageReelWidth });
+
+
+</pre>
+    <p>
+        Image rotating method also has very simple logic. You just need to determine the
+        left position of the Image reel. So get the index of the active image. Multiply
+        it with image width to determine to slide distance. Then animate the left Css property.
+    </p>
+    <pre>
+
+rotate = function () {
+    var triggerID = $active.attr("rel") - 1; //Get number of times to slide
+
+    var image_reelPosition = triggerID * imageWidth; //Determines the distance the image reel needs to slide
+
+    $(".paging a").removeClass('active'); //Remove all active class
+    $active.addClass('active');
+
+    //Slider Animation
+    $(".imageReel").animate({
+        left: -image_reelPosition
+    }, 500);
+
+};
+
+
+</pre>
+    <p>
+        startRotation() is a method which kicks off the rotation. It selects next active
+        element after some interval and calls rotate() to display this active image.
+    </p>
+    <pre>
+
+function startRotation() {
+
+    play = setInterval(function () {
+
+        $active = $('.paging a.active').next();
+
+        if ($active.length == 0) {
+            $active = $('.paging a:first'); //go back to first
+        }
+
+        rotate();  //Trigger the paging and slider function
+    }, 7000); //Timer speed in milliseconds 
+}
+
+</pre>
+    <p>
+        Register click event on the page number, when user will click, select it as active
+        element and immediately slide to that image
+    </p>
+    <pre>
+
+
+    //On Click
+    $(".paging a").click(function () {
+        $active = $(this); //Activate the clicked paging
+
+        //Reset Timer
+        RotateImmediate();
+
+        return false; //Prevent browser jump to link anchor
+    });
+
+</pre>
+    <p>
+        Slide next and previous functionality is also very simple. Get current element and find its next
+        or previous where you want to navigate and after selecting call RoatateImmediate() method.
+    </p>
+    <pre>
+
+function RotateNext() {
+    var next = $('.paging a.active').next();
+    if (next.length > 0) {
+        $active = next;
+        RotateImmediate();
+    }
+}
+
+function RotatePrevious() {
+    var next = $('.paging a.active').prev();
+    if (next.length > 0) {
+        $active = next;
+        RotateImmediate();
+    }
+}
+</pre>
+</body>
+</html>

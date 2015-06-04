@@ -1,0 +1,207 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Adnimation Effect</title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        #divSocial
+        {
+            padding: 10px;
+            border: 1px solid #e1e1e1;
+            text-align: center;
+        }
+        #divSocial a
+        {
+            text-decoration: none;
+        }
+        #divSocial a img
+        {
+            position: relative;
+            border: none;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#divSocial a img").hover(function () {
+
+                $(this).animate({ top: "-15" });
+            }, function () {
+
+                $(this).animate({ top: "0" });
+            });
+
+
+
+            $("#lnkMoreDetail").click(function (event) {
+
+                event.preventDefault();
+                $("#img").animate({ width: 449, height: 339 }, "slow");
+                $("#imgDescription").show();
+                $("#lnkMoreDetail").hide();
+
+
+            });
+
+            $("#lnkClose").click(function (event) {
+
+                event.preventDefault();
+                $("#imgDescription").hide();
+
+
+                $("#img").animate({ height: 100 }, "fast");
+                $("#img").animate({ width: 100 }, "fast");
+
+
+                $("#lnkMoreDetail").show();
+
+            });
+
+
+
+        });
+
+
+
+
+    </script>
+</head>
+<body>
+    <div class="pageTitle">
+        Animation Effect</div>
+    <p>
+        JQuery also provides an easy way to animate element. the syntax of animate method
+        is
+        <br />
+        <b>.animate( properties, [duration], [easing], [complete]) </b>
+        <ol>
+            <li><b>properties:</b> A map of CSS properties, which changes during animation.</li>
+            <li><b>duration:</b> String or number to determine the duration of the animation.</li>
+            <li><b>easing:</b> the name of easing function to use for the transition.</li>
+            <li><b>complete:</b> A function to call on the complete of animation.</li>
+        </ol>
+    </p>
+    <h3>
+        Example 1</h3>
+    <div id="divExp1" style="">
+        <img id="img" src="Images/b1.jpg" width="100px" height="100px" /><br />
+        <a id="lnkMoreDetail" href="#">More detail</a>
+        <div id="imgDescription" style="width: 450px; background-color: #e1e1e1; display: none;">
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+            tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero
+            eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren
+            <div>
+                <a id="lnkClose" href="#">Close</a>
+            </div>
+        </div>
+    </div>
+    <p>
+        Click on the “More detail” button to increase the size of the image using animation
+        and show description of the image. Write html to implement this functionality.
+    </p>
+    <pre>
+    
+&lt;div id="<b>divExp1</b>" style="">
+    &lt;img id="<b>img</b>" src="Images/b1.jpg" width="100px" height="100px" />&lt;br />
+    &lt;a id="<b>lnkMoreDetail</b>" href="#">More detail&lt;/a>
+    &lt;div id="<b>imgDescription</b>" style="width:450px; background-color:#e1e1e1;  display: none;">
+            Image description will be here.
+        &lt;div>
+            &lt;a id="<b>lnkClose</b>" href="#" >Close&lt;/a>
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+    
+    </pre>
+    <p>
+        Register click event on the “lnkMoreDetail” element and increase the width and height
+        of the image using “$("#img").animate({ width: 449, height: 339 }, "slow");” statement.
+        Then show description and hide the more detail link.</p>
+    <p>
+        Register click event on “lnkClose” and revert the changes.
+    </p>
+    <pre>
+
+$(document).ready(function () {
+
+    $("#lnkMoreDetail").click(function (event) {
+
+        event.preventDefault();
+
+        $("#img").animate({ width: 449, height: 339 }, "slow");
+        $("#imgDescription").show();
+        $("#lnkMoreDetail").hide();
+
+    });
+
+    $("#lnkClose").click(function (event) {
+
+        event.preventDefault();
+        $("#imgDescription").hide();
+
+        $("#img").animate({ height: 100 }, "fast");
+        $("#img").animate({ width: 100 }, "fast");
+
+        $("#lnkMoreDetail").show();
+
+    });
+
+});
+
+</pre>
+    <h3>
+        Example 2</h3>
+    <div id="divSocial">
+        <a href="#">
+            <img src="Images/Social/delicious.png" />
+        </a><a href="#">
+            <img src="Images/Social/Digg.png" />
+        </a><a href="#">
+            <img src="Images/Social/Twitter.png" />
+        </a><a href="#">
+            <img src="Images/Social/Diigo.png" />
+        </a><a href="#">
+            <img src="Images/Social/FaceBook.png" />
+        </a><a href="#">
+            <img src="Images/Social/MySpace.png" />
+        </a><a href="#">
+            <img src="Images/Social/Reddit.png" />
+        </a><a href="#">
+            <img src="Images/Social/Stumbleupon.png" />
+        </a><a href="#">
+            <img src="Images/Social/Technorati.png" />
+        </a>
+    </div>
+    <p>
+        A very cool and simple example for the icons list in your website, simply register
+        hover event on the image. On mover over set top=-15 and on mouse out set top=0 again.
+    </p>
+    <pre>
+
+$("#divSocial a img").hover(
+            function () {
+                            $(this).animate({ top: "-15" });
+            }, 
+            function () {
+                            $(this).animate({ top: "0" });
+            }
+        );
+    
+    
+    </pre>
+    <p>
+        Don’t forget to set the relative position of the image.
+    </p>
+    <pre>
+
+#divSocial a img
+{
+    position: relative;
+    border: none;
+}    
+    
+    </pre>
+</body>
+</html>

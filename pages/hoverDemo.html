@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Hover Demo</title>
+    <script src="../scripts/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+           $('#hoverText').hover(mouseOver, mouseOut);
+
+            function mouseOver(){
+                console.log("mouse over");
+            }
+
+            function mouseOut(){
+                console.log("mouse out");
+            }
+        });
+    </script>
+</head>
+<body>
+<form>
+
+    <input type="text" id="hoverText"/>
+</form>
+</body>
+</html>

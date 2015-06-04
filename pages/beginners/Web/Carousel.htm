@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        #carousel
+        {
+            width: 449PX;
+            height: 375PX;
+            border: 2px solid black;
+            background-color: #948b6d;
+        }
+        
+        #imageContainer
+        {
+            display: none;
+        }
+        
+        #imageContainer.selected
+        {
+            display: block;
+        }
+        
+        .imageDetail
+        {
+            border-top: 2px solid black;
+            padding: 2px;
+            color: black;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            SetCarousel();
+            SetTimmer();
+        });
+
+        function SetCarousel() {
+            $("#carousel #imageContainer").first().addClass("selected");
+        }
+
+        function SetTimmer() {
+            setInterval(showNext, 2000);
+        }
+
+        function showNext() {
+
+            var sel = $("#carousel #imageContainer.selected")
+            sel.removeClass('selected');
+
+            var nextImge = sel.next();
+
+            var id = $(nextImge).attr('id');
+            if (id != null) {
+                nextImge.addClass('selected');
+            }
+            else {
+                SetCarousel();
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <div class="pageTitle">
+        Create Carousel</div>
+    <div id="carousel">
+        <div id="imageContainer">
+            <img src="Images/b1.jpg" />
+            <div class="imageDetail">
+                First image..
+            </div>
+        </div>
+        <div id="imageContainer">
+            <img src="Images/b2.jpg" />
+            <div class="imageDetail">
+                Second image..
+            </div>
+        </div>
+        <div id="imageContainer">
+            <img src="Images/b3.jpg" />
+            <div class="imageDetail">
+                Third image..
+            </div>
+        </div>
+    </div>
+    <p>
+        It is very easy to create carousel using JQuery. Simply write HTML to show images
+        and description.
+    </p>
+    <pre>
+
+&lt;div id="carousel">
+    &lt;div id="imageContainer">
+        &lt;img src="Images/b1.jpg" />
+        &lt;div class="imageDetail">
+            First image..
+        &lt;/div>
+    &lt;/div>
+    &lt;div id="imageContainer">
+        &lt;img src="Images/b2.jpg" />
+        &lt;div class="imageDetail">
+            Second image..
+        &lt;/div>
+    &lt;/div>
+    &lt;div id="imageContainer">
+        &lt;img src="Images/b3.jpg" />
+        &lt;div class="imageDetail">
+            Third image..
+        &lt;/div>
+    &lt;/div>
+&lt;/div>
+    
+</pre>
+    <p>
+        Write the CSS and hide all “imageContainer” by default using CSS
+    </p>
+    <pre>
+
+#carousel
+{
+    width: 449PX;
+    height: 375PX;
+    border: 2px solid black;
+        background-color:#948b6d;
+}
+        
+#imageContainer
+{
+        	
+    display: none;
+}
+        
+#imageContainer.selected
+{
+        
+    display: block;
+}
+        
+.imageDetail
+{
+    border-top: 2px solid black;
+    padding: 2px;
+    color: black;
+           
+}
+
+</pre>
+    <p>
+        After writing HTML and CSS, now it is time to use JQuery. First of all you need
+        to show the first image container. And then you have to start the timer to change
+        the images after some interval.
+    </p>
+    <pre>
+
+$(document).ready(function () {
+    SetCarousel();
+    SetTimmer();
+});
+
+function SetCarousel() {
+    $("#carousel #imageContainer").first().addClass("selected");
+}
+
+function SetTimmer() {
+    setInterval(showNext, 2000);
+}
+
+</pre>
+    <p>
+        “SetInerval” method will calls “ShowNext” method every 2000 millisecond interval.
+        The ShowNext method has very simple routines. Simple remove the “selected” Css of
+        the last displayed element. Then assign selected CSS class to the next element.
+        If next element is null then again select first.
+    </p>
+    <pre>
+function showNext() {
+
+    var sel = $("#carousel #imageContainer.selected")
+    sel.removeClass('selected');
+            
+    var nextImge = sel.next();
+
+    var id = $(nextImge).attr('id');
+    if (id != null) {
+        nextImge.addClass('selected');
+    }
+    else {
+        SetCarousel();
+    }
+}
+
+</pre>
+</body>
+</html>

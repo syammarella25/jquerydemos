@@ -1,0 +1,699 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="Style/StyleSheet.css" />
+    <style>
+        td
+        {
+            vertical-align: top;
+        }
+        
+        th
+        {
+            background: #e1e1e1;
+            text-align: left;
+        }
+        
+        
+        .SelectDiv
+        {
+            border: 1px solid gray;
+            background: #e1e1e1;
+        }
+        
+        .textHighlight
+        {
+            color: Red;
+        }
+        
+        
+        .listUL
+        {
+            width: 100px;
+            height: 100px;
+            background: yellow;
+        }
+        
+        .emptyUL
+        {
+            width: 100px;
+            height: 100px;
+            background: gray;
+            border: 2px dotted black;
+        }
+        
+        .myCss
+        {
+            font-weight: bold;
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.6.2.min.js"></script>
+</head>
+<body>
+    <div class="pageTitle">
+        Selectors in JQuery</div>
+    <p>
+        JQuery provides a simple way to select single element or group of elements. You
+        can access element by type (div, span, p), id, CSS class and attribute etc.
+    </p>
+    <h3>
+        Basic Selector</h3>
+    <table cellspacing="0" cellpadding="6" width="100%" class="boxTable">
+        <tr>
+            <th style="width: 100px;">
+                JQuery
+            </th>
+            <th style="width: 350px;">
+                Example Code
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Output
+            </th>
+        </tr>
+        <tr>
+            <td>
+                $('element')
+            </td>
+            <td>
+                $('blockquote').css('color','red');
+            </td>
+            <td>
+                it select all elements with the give tag name. in this example it will return all
+                &lt;blockquote&gt; elements in the document.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('blockquote').css('color','red');" />
+            </td>
+            <td>
+                <blockquote>
+                    Here is example text for the first selector example.
+                </blockquote>
+                <blockquote>
+                    Here is second block quote text...
+                </blockquote>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                $('#id')
+            </td>
+            <td>
+                $('#item1').css('color','red');
+            </td>
+            <td>
+                it select single element with the give id. if more than one element has been assigned
+                same id, first match result will be return.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#item1').css('color','red');" />
+            </td>
+            <td>
+                <span id="item1">First line inside the &lt;span id="item1" &gt; </span>
+                <br />
+                <span id="item2">Second line inside the &lt;span id="item2" &gt; </span>
+                <br />
+                <span id="item1">First line inside the &lt;span id="item1" &gt; </span>
+                <br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                $('.class')
+            </td>
+            <td>
+                $('.myCss').css('color','red');
+            </td>
+            <td>
+                it select all the elements with given class.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('.myCss').css('color','red');" />
+            </td>
+            <td>
+                <span class="myCss">First line for testing. </span>
+                <br />
+                <span class="myCss">Second line for testing. </span>
+                <br />
+            </td>
+        </tr>
+    </table>
+    <h3>
+        Basic Filters</h3>
+    <table cellpadding="6" width="100%" class="boxTable">
+        <tr>
+            <th style="width: 100px;">
+                JQuery
+            </th>
+            <th style="width: 350px;">
+                Example Code
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Output
+            </th>
+        </tr>
+        <tr>
+            <td>
+                :first
+            </td>
+            <td>
+                $('#basicList li:first').css('background-color','yellow');
+            </td>
+            <td>
+                :first selects the first matched element. '#basicList li:first' selects the first
+                element of list.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:first').css('background-color','yellow');"
+                    value="Execute" />
+            </td>
+            <td rowspan="8" style="width: 150px;">
+                <ul id="basicList">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                    <li>Item 5</li>
+                    <li>Item 6</li>
+                    <li>Item 7</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :last
+            </td>
+            <td>
+                $('#basicList li:last').css('background-color','red');
+            </td>
+            <td>
+                :last selects the last matched element. '#basicList li:last' selects the last element
+                of list.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:last').css('background-color','red');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :not(selector)
+            </td>
+            <td>
+                $('#basicList li:not(li:first)').css('background-color','pink');
+            </td>
+            <td>
+                :not(selector) selects all elements that do not match the given selector. '#basicList
+                li:not(li:first)' selects all element other than first element.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:not(li:first)').css('background-color','pink');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :even
+            </td>
+            <td>
+                $('#basicList li:even').css('background-color','blue');
+            </td>
+            <td>
+                :even selects the even elements. it uses zero-indexed. so this command will select
+                first, third, fifth,..... so on.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:even').css('background-color','blue');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :odd
+            </td>
+            <td>
+                $('#basicList li:odd').css('background-color','green');
+            </td>
+            <td>
+                :old selects the old elements. it also uses zero-indexed. So this command will select
+                second, fouth, sixth,..... so on.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:odd').css('background-color','green');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :eq(index)
+            </td>
+            <td>
+                $('#basicList li:eq(3)').css('background-color','yellow');
+            </td>
+            <td>
+                :eq(index) selects the element at index n with in the set. this example code will
+                select 4th element in the list.
+            </td>
+            <td>
+                <input type="button" onclick=" $('#basicList li:eq(3)').css('background-color','yellow');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :gt(index)
+            </td>
+            <td>
+                $('#basicList li:gt(3)').css('background-color','red');
+            </td>
+            <td>
+                :gt(index) select all elements at an index grater than index number for filtering.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:gt(3)').css('background-color','red');"
+                    value="Execute" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :lt(index)
+            </td>
+            <td>
+                $('#basicList li:lt(3)').css('background-color','purple');
+            </td>
+            <td>
+                :lt(index) select all elements at an index less than index number for filtering.
+            </td>
+            <td>
+                <input type="button" onclick="$('#basicList li:lt(3)').css('background-color','purple');"
+                    value="Execute" />
+            </td>
+        </tr>
+    </table>
+    <h3>
+        Filter By Content
+    </h3>
+    <table cellpadding="6" width="100%" class="boxTable">
+        <tr>
+            <th style="width: 100px;">
+                Jquery
+            </th>
+            <th style="width: 350px;">
+                Example Code
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Output
+            </th>
+        </tr>
+        <tr>
+            <td>
+                :contains(text)
+            </td>
+            <td>
+                $('#p1 span:contains(too)').css('background-color','yellow');
+            </td>
+            <td>
+                it selects all the &lt;span> which contains word 'too'
+            </td>
+            <td>
+                <input type="button" onclick="$('#p1 span:contains(too)').css('background-color','yellow');"
+                    value="Execute" />
+            </td>
+            <td>
+                <p id="p1">
+                    <span><b>Text in the span 1</b>.....</span> <span>Text in the span 2 too</span>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :empty
+            </td>
+            <td>
+                $('#list:empty').addClass('emptyUL');
+            </td>
+            <td>
+                :empty return those element who does not has child elements.
+            </td>
+            <td>
+                <input type="button" onclick="$('#list:empty').addClass('emptyUL');" value="Execute" />
+            </td>
+            <td>
+                <span>UL with no childs
+                    <ul id="list" class="listUL">
+                    </ul>
+                </span><span>UL with no childs
+                    <ul id="list" class="listUL">
+                        <li>Child 1</li>
+                        <li>Child 2</li>
+                    </ul>
+                </span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :has(selector)
+            </td>
+            <td>
+                $('#list2 li:has(a)').css('background-color', 'red');
+            </td>
+            <td>
+                The expression $('li:has(a)') matches a &lt;li> if a &lt;a> exists anywhere among
+                its descendants, not just as a direct child.
+            </td>
+            <td>
+                <input type="button" onclick="$('#list2 li:has(a)').css('background-color', 'red');"
+                    value="Execute" />
+            </td>
+            <td>
+                <ul id="list2">
+                    <li>Item 1</li>
+                    <li>Item 2 <a href='#'>Click here</a> </li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :parent
+            </td>
+            <td>
+                $('#table1 td:parent').css('background-color', 'red');
+            </td>
+            <td>
+                :parent is the inverse of :empty. :parent select those who has atleast one child
+                element.
+            </td>
+            <td>
+                <input type="button" onclick="$('#table1 td:parent').css('background-color', 'red');"
+                    value="Execute" />
+            </td>
+            <td>
+                <table id="table1" cellpadding="6">
+                    <tr>
+                        <td>
+                            Cell 1
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                            Cell 4
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <h3>
+        Child Filters
+    </h3>
+    :nth-child(index/even/odd/equation)
+    <table cellpadding="6" width="100%" class="boxTable">
+        <tr>
+            <th style="width: 120px;">
+                JQuery
+            </th>
+            <th>
+                Example Code
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+            <th>
+                Output
+            </th>
+        </tr>
+        <tr>
+            <td>
+                :nth-child(even)
+            </td>
+            <td>
+                $('#Ul2 li:nth-child(even)').css('background-color', 'red');
+            </td>
+            <td>
+                ....
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:nth-child(even)').css('background-color', 'red');" />
+            </td>
+            <td id="tdChildList" rowspan="7">
+                <b>List# 1</b>
+                <ul id="Ul2" style="margin: 5px; width: 150px">
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                    <li>Item 3</li>
+                    <li>Item 4</li>
+                    <li>Item 5</li>
+                    <li>Item 6</li>
+                    <li>Item 7</li>
+                </ul>
+                <br />
+                <b>List# 2</b>
+                <ul style="margin: 5px;">
+                    <li>Item 1</li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :nth-child(odd)
+            </td>
+            <td>
+                $('#Ul2 li:nth-child(odd)').css('background-color', 'blue');
+            </td>
+            <td>
+                ...
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:nth-child(odd)').css('background-color', 'blue');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :nth-child(n)
+            </td>
+            <td>
+                $('#Ul2 li:nth-child(3)').css('background-color', 'yellow');
+            </td>
+            <td>
+                ...
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:nth-child(3)').css('background-color', 'yellow');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :nth-child(equation)
+            </td>
+            <td>
+                $('#Ul2 li:nth-child(3n)').css('background-color', 'yellow');
+            </td>
+            <td>
+                ....
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:nth-child(3n)').css('background-color', 'yellow');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :first-child
+            </td>
+            <td>
+                $('#Ul2 li:first-child').css('background-color', 'purple');
+            </td>
+            <td>
+                ....
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:first-child').css('background-color', 'purple');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :last-child
+            </td>
+            <td>
+                $('#Ul2 li:last-child').css('background-color', 'brown');
+            </td>
+            <td>
+                ....
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#Ul2 li:last-child').css('background-color', 'brown');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                :only-child
+            </td>
+            <td>
+                $('#tdChildList li:only-child').css('background-color', 'gray');
+            </td>
+            <td>
+                ....
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="$('#tdChildList li:only-child').css('background-color', 'gray');" />
+            </td>
+        </tr>
+    </table>
+    <h3>
+        Attribute Filters</h3>
+    <table cellpadding="6" width="100%" class="boxTable">
+        <tr>
+            <th style="width: 120px;">
+                JQuery
+            </th>
+            <th>
+                Example Code
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Action
+            </th>
+            <th style="width: 120px;">
+                Output
+            </th>
+        </tr>
+        <tr>
+            <td>
+                [Attribute Name]
+            </td>
+            <td>
+                $('#tdAtt a[id]').css('background-color','yellow');
+            </td>
+            <td>
+                select the elements that has specific attribue.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick=" $('#tdAtt a[id]').css('background-color','yellow');" />
+            </td>
+            <td id="tdAtt" rowspan="6">
+                <a id="lnkHotmail" href="http://www.hotmail.com" rel="1">Click here 1</a><br />
+                <a href="http://www.cnn.com" rel="2">Click here 2</a><br />
+                <a id="lnkGoogle" href="http://www.google.com.pk" rel="3">Click here 3</a><br />
+                <a id="lnkYahoo" href="www.yahoo.com" rel="4">Click here 4</a><br />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [AttributeName="value"]
+            </td>
+            <td>
+                $('#tdAtt a[rel="2"]').css('background-color','red');
+            </td>
+            <td>
+                Select the elements that has specific attribute with a value exactly equal to value.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick=" $('#tdAtt a[rel=2]').css('background-color','red');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [AttributeName!="value"]
+            </td>
+            <td>
+                $('#tdAtt a[rel!="2"]').css('background-color','brown');
+            </td>
+            <td>
+                Select the elements that has specific attribute with a value not equal to value.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick=" $('#tdAtt a[rel!=2]').css('background-color','brown');" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [AttributeName^="value"]
+            </td>
+            <td>
+                $('#tdAtt a[href^="http://"]').css('background-color','blue');
+            </td>
+            <td>
+                Selects elements that have the specified attribute with a value beginning exactly
+                with a given string.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="filterBeginning();" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [AttributeName$="value"]
+            </td>
+            <td>
+                $('#tdAtt a[href$=".com"]').css('background-color','gray');
+            </td>
+            <td>
+                Selects elements that have the specified attribute with a value ending exactly with
+                a given string.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="filterEnding();" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                [AttributeName*="value"]
+            </td>
+            <td>
+                $('#tdAtt a[href*="www"]').css('background-color','pink');
+            </td>
+            <td>
+                Selects elements that have the specified attribute with a value containing the a
+                given substring.
+            </td>
+            <td>
+                <input type="button" value="Execute" onclick="filterAny();" />
+            </td>
+        </tr>
+    </table>
+    <script language="javascript">
+
+        function filterBeginning() {
+
+            $('#tdAtt a[href^="http://"]').css('background-color', 'blue');
+
+        }
+
+        function filterEnding() {
+            $('#tdAtt a[href$=".com"]').css('background-color', 'gray');
+        }
+
+        function filterAny() {
+            $('#tdAtt a[href*="www"]').css('background-color', 'pink');
+
+        }
+
+    </script>
+</body>
+</html>

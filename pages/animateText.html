@@ -1,0 +1,100 @@
+<!-- Script by hscripts.com -->
+<!-- Copyright by Hscripts -->
+<!-- More scripts @www.hscripts.com -->
+<html>
+<head>
+    <title>Jquery Fly Text / Letters Script - Demo</title>
+    <script src="../scripts/jquery-1.6.2.min.js"></script>
+    <script>
+        var count=0;
+        var length;
+        var mar=50;
+        var myloop;
+        var message="Hai, Welcome To JQuery World";
+        var message_array=message.split(' ');
+        $(document).ready(function(){
+
+                length=message_array.length;
+                for(var i=0;i<length;i++)
+                {
+                    $('div.flycontainer').append("<span style='opacity:0'id='"+i+"'>"+message_array[i]+"</span>");
+                }
+                start();
+            });
+        function myplay()
+        {
+            $("#pause").show();
+            $("#play").hide();
+            count=0;
+            mar=50;
+            for(var j=0;j<length;j++)
+            {
+                $(".flycontainer #"+j+"").html(message_array[j]).animate({opacity:0},1000);
+                $(".flycontainer #"+j+"").html(message_array[j]).animate({marginLeft:0},100);
+            }
+            start();
+        }
+        function mypause()
+        {
+            clearInterval(myloop);
+            $("#pause").hide();
+            $("#play").show();
+        }
+        function start()
+        {
+            myloop=setInterval(function(){
+                change(count)
+            },2000);
+        }
+
+        function change(myunit)
+        {
+            $(".flycontainer #"+count+"").html(message_array[myunit]).animate({opacity:1, marginLeft:mar},1000);
+            var mov=$("#"+count+"").width();
+            mar=mar+mov+5;
+//alert(mar);
+            count++;
+            if(count==length)
+            {
+                clearInterval(myloop);
+                $("#pause").hide();
+                $("#play").show();
+            }
+        }
+    </script>
+    <style>
+        .flycontainer
+        {
+            background-color:#fff;
+            width:400px;
+            margin:0 auto;
+            color:#000;
+            overflow:hidden;
+        }
+        .flycontainer span
+        {
+            position:absolute;
+            color:#25185e;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <div style="margin-top:20px; "><h3>Jquery Fly Text Script</h3></div>
+    <div style="height:150px; margin-top:50px; ">
+        <table border="0" cellpadding="2" cellspacing="2" align="center">
+            <tr><td>
+                <div class="flycontainer" style="color:green; font-size:25px; margin:0px"></div>
+                <br />
+            </td></tr>
+            <tr align="center"><td><br /><br />
+                <div>
+                    <img id="pause" onclick="mypause()" src="../images/pause.png" style="cursor: pointer;" />
+                    <img id="play" onclick="myplay()" src="../images/play.png" style="cursor: pointer; display:none;" />
+                </div></td>
+            </tr>
+        </table>
+    </div>
+</center>
+</body>
+</html>
