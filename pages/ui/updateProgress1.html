@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Update Progress</title>
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <script src="../../scripts/jquery-2.1.3.min.js"></script>
+    <script src="../../scripts/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../css/uidemo.css">
+</head>
+<body>
+
+<div id="progressbardemo"></div>
+
+<form>
+
+    First Name:<input type="text" value="" id="fname"/>
+    Last Name:<input type="text" value="" id="lname"/>
+</form>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $( "#progressbardemo" ).progressbar({
+            value: 0
+        });
+
+        $('input').change(function() {
+            var new_amount = 0
+            $('input').each(function () {
+
+                        if ($(this).val() == "50") {
+                            new_amount += 5;   //5 Percent
+                        }
+                        if ($(this).val() == "100") {
+                            new_amount += 10;  //10 Percent
+                        }
+                    }
+            );
+
+            $("#progressbardemo").progressbar('value', new_amount);
+        });
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Update Progress</title>
+    <link rel="stylesheet" href="../../css/jquery-ui.css" />
+    <script src="../../scripts/jquery-2.1.3.min.js"></script>
+    <script src="../../scripts/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../../css/uidemo.css">
+
+
+</head>
+<body>
+
+<div id="progressbardemo"></div>
+
+<form>
+
+    First Name:<input type="text" value="" id="fname"/>
+    Last Name:<input type="text" value="" id="lname"/>
+</form>
+<script type="text/javascript">
+
+    $(document).ready(function(){
+        var count = 0;
+
+        var lastId = '';
+        $( "#progressbardemo" ).progressbar({
+            value: 0
+        });
+
+
+
+        $('#lname').on('input', updateProgress);
+        $('#fname').on('input', updateProgress);
+
+        function updateProgress(){
+            var input = $(this);
+            var is_name = input.val();
+            var updateValue;
+            if (!is_name) {
+                return false;
+            } else if(is_name == '') {
+                updateValue = progressBarVal - 50;
+            }
+            var progressBarVal = $('#progressbardemo').progressbar('value');
+            alert(progressBarVal);
+
+            if (is_name || is_name != '') {
+               updateValue = progressBarVal+50;
+            }
+
+
+            if (updateValue != '' || updateValue) {
+                $('#progressbardemo').progressbar('value', updateValue);
+            }
+        }
+    });
+</script>
+</body>
+</html>

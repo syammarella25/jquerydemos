@@ -16,7 +16,8 @@ $(document).ready(function(){
                 $('#personTable tr').not(':first').remove();
                 var html = '';
                 for(var i = 0; i < resultJSON.person.length; i++) {
-                    html += '<tr><td>' + resultJSON.person[i].firstName + '</td><td>'+
+					
+					html += '<tr><td>' + resultJSON.person[i].firstName + '</td><td>'+
                     resultJSON.person[i].lastName + '</td><td>'
                     + resultJSON.person[i].age + '</td></tr>';
                 }
