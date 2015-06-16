@@ -23,8 +23,8 @@ $(document).ready(function(){
     function loadPerson() {
         $("#result-temp" ).html( "<strong> Loading Employees List from the server </strong>" );
         $.ajax({
-            url: "http://localhost:9090/SystemInfo/rest/employee/list",
-            dataType: 'jsonp',
+            url: "http://localhost:8080",
+            /*dataType: 'json',*/
             success: function( response ) {
                 console.log(response);
                 console.log(response.length);

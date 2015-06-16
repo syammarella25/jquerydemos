@@ -12,18 +12,19 @@
 <body>
 <h1>Employee Information</h1>
 <div id="viewEmployee">
+    <form action="viewEmployee.html" id="empForm">
 <table id="empViewTable">
     <tr>
         <td>Employee ID</td>
-        <td class="empData"><input type="text" id="empid" /></td>
+        <td class="empData" id="employeeid"><input type="text" id="empid" /></td>
     </tr>
     <tr>
         <td>First Name</td>
-        <td class="empData"><input type="text" name="fname" /></td>
+        <td class="empData"><input type="text" name="firstName" id="firstName" /></td>
     </tr>
     <tr>
         <td>Last Name</td>
-        <td class="empData"><input type="text" name="lname" /></td>
+        <td class="empData"><input type="text" name="lastName" id="lastName" /></td>
     </tr>
     <tr>
         <td>Date Of Birth</td>
@@ -35,17 +36,18 @@
     </tr>
     <tr>
         <td>Email ID</td>
-        <td  class="empData"><input type="text" id="emailId" name="emailid" /></td>
+        <td  class="empData"><input type="text" id="emailId" name="emailId" /></td>
     </tr>
     <tr>
         <td>Phone Number</td>
-        <td class="empData"><input type="text" name="phone number" id="phoneNum" /></td>
+        <td class="empData"><input type="text" name="phoneNum" id="phoneNum" /></td>
     </tr>
     <tr>
-        <td><input type="button" id="update" onclick="updateEmployee()" value="Update Employee"/></td>
+        <td><input type="submit" id="update" value="Update Employee"/></td>
         <td><input type="submit" id="add"  value="Add Employee"/></td>
     </tr>
 </table>
+        </form>
 </div>
 <a href="listEmployee.html">View Employees</a>
 <div id="result-temp"></div>

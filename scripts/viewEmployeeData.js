@@ -1,14 +1,16 @@
 $(document).ready(function () {
 
-    var empId = getParameterByName("empId");
+
+    var empId = getParameterByName("empid");
     console.log(empId);
-    $('#empViewTable').load(viewPerson);
+
     if(empId == "") {
         $('#add').show();
         $('#update').hide();
     } else {
         $('#add').hide();
         $('#update').show();
+        //$('#update').onclick(updateEmployee());
     }
 
 
@@ -20,10 +22,13 @@ $(document).ready(function () {
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
+    $('#empViewTable').load(viewPerson());
+
     function viewPerson() {
-        var empId = getParameterByName("empId");
+        var empId = getParameterByName("empid");
         console.log("employee id:" + empId);
         if (empId != "") {
+
             $("#result-temp").html("<strong> Inprogress to get the Employees Data from the server </strong>");
 
             $.ajax({
@@ -36,13 +41,13 @@ $(document).ready(function () {
                     if (response != null) {
                         console.log(response.empid);
 
-                        $('#empid').html(response.empid);
-                        $('#fname').html(response.firstName);
-                        $('#lname').html(response.lastName);
-                        $('#emailId').html(response.emailId);
-                        $('#dob').html(response.dob);
-                        $('#doj').html(response.doj);
-                        $('#phoneNum').html(response.phoneNum);
+                        $('#employeeid')[0].innerHTML = (response.empid);
+                        $('#firstName')[0].value = response.firstName;
+                        $('#lastName')[0].value = (response.lastName);
+                        $('#emailId')[0].value = (response.emailId);
+                        $('#dob')[0].value = (response.dob);
+                        $('#doj')[0].value = (response.doj);
+                        $('#phoneNum')[0].value = (response.phoneNum);
                         $("#result-temp").html("<strong> Successfully to get the Employees Data from the server </strong>");
                         /*$('.empData').each(function () {
 
@@ -81,14 +86,16 @@ $(document).ready(function () {
         return o;
     };
 
-    $( "#dobdate" ).datepicker({
+    $( "#dob" ).datepicker({
         inline: true,
         dateFormat: "yy-mm-dd"
     });
-    $( "#dojdate" ).datepicker({
+    $( "#doj" ).datepicker({
         inline: true,
         dateFormat: "yy-mm-dd"
     });
+
+
 
     $("#empForm").submit(function (event) {
         event.preventDefault();
@@ -96,17 +103,26 @@ $(document).ready(function () {
         //formData = formData.substring(1,formData.length-1);
         $("#result-temp").html("Sending the request..");
         console.log(formData);
+        var type = '';
+        var url = 'http://localhost:9090/SystemInfo/rest/employee/';
+        if (empId != '') {
+            type = 'put';
+            url +='update';
+        } else {
+            type='post';
+            url+='create';
+        }
         $.ajax({
-            url: "http://localhost:9090/SystemInfo/rest/employee/create",
+            url: url,
             dataType: 'json',
-            type: 'post',
+            type: type,
             contentType: 'application/json; charset=utf-8',
             data: formData,
             success: function (response) {
                 console.log("success"+response);
                 //console.log(response.length);
                 $("#result-temp").html("<strong> " + response + " Successfully from the server </strong> ");
-                $(location).attr('href','listEmployee.html')
+                $(location).attr('href','viewEmployeeData.html?empid='+empId);
             },
             error: function (response) {
                 console.log("failure" + response);

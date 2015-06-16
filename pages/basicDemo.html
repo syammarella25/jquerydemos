@@ -9,8 +9,8 @@
         $(document).ready(function () {
             console.log("in jquery ready function()");
             var text = "<h1> This is new text that got changed from JQuery </h1>";
-           console.log($('div').length);
-            $('div')[0].innerHTML=text;
+            console.log($('div').length);
+            //$('div')[0].innerHTML=text;
         });
 
     </script>
@@ -19,8 +19,11 @@
 <body>
 <h1>Welcome To JQuery</h1>
 <div id="demoDiv">
-   <p> This will be changed through JQuery DOM Selector</p>
+    <p> This will be changed through JQuery DOM Selector</p>
     <h1>innner html</h1>
+    <div id="innerdiv">
+        <h1>inner div</h1>
+    </div>
 
 </div>
 
