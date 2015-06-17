@@ -7,9 +7,10 @@ $(function () {
     for (var i = 0; i < handles.length; i++) {
         options += '<option value="' + handles[i] + '">' + handles[i] + '</option>';
     }
+    console.log(options);
     $('#listBox').html(options);
 });
-function selct_district($val) {
+function select_district($val) {
     if ($val == 'SELECT STATE') {
         var options = '';
         $('#secondlist').html(options);
@@ -22,6 +23,7 @@ function selct_district($val) {
             for (var i = 0; i < andhra.length; i++) {
                 options += '<option value="' + andhra[i] + '">' + andhra[i] + '</option>';
             }
+            console.log(options);
             $('#secondlist').html(options);
         });
     }
