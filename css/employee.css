@@ -39,3 +39,6 @@ body{
 select {
     width: 200px;
 }
+p{
+    color: red;
+}
